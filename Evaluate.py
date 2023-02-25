@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 # import our Generator class file
 sys.path.append(".")
-#from IntegralClass import Integration
+from IntegralClass import Integration
 
 
 if __name__ == "__main__":
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     if '-func' in sys.argv:
         p = sys.argv.index('-func')
-        func = eval('lamba x: ' + sys.argv[p+1])
+        func = eval('lambda x: ' + sys.argv[p+1])
     
     
     fx = Integration(func,lower,upper)
@@ -61,7 +61,6 @@ if __name__ == "__main__":
     error_gauss = np.abs(I_gauss - I_exact)
 
     # Plot errors
-    import matplotlib.pyplot as plt
 
     plt.plot(ns, error_midpoint, label='Midpoint rule')
     plt.plot(ns, error_gauss, label='Gauss-Legendre quadrature')
