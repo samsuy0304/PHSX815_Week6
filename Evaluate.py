@@ -66,6 +66,7 @@ if __name__ == "__main__":
     plt.plot(ns, error_gauss, label='Gauss-Legendre quadrature')
     plt.xlabel('Number of sub-intervals')
     plt.ylabel('Absolute error')
+    plt.title("Integral Evaluation:"+ r'$\int_0^{{\pi}} \sin(x)\,dx = 2$')
     plt.legend()
     plt.show()
 
