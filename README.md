@@ -1,4 +1,4 @@
-# Numerical Integration Methods
+# Monte Carlo and Numerical Integration Methods
 
 The following code uses Numerical methods to evaluate integral and compare the error in these methods. To use the code you will require following libraries:
 
