@@ -4,6 +4,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#Importing the random class
+from Random import Random
+
 class Integration:
 
     #Initialization method for the Integration Class
@@ -24,3 +27,10 @@ class Integration:
         w = [5/9, 8/9, 5/9]
         x_labels = [(self.highlim-self.lowlim)/2 * x_i + (self.highlim+self.lowlim)/2 for x_i in x]
         return (self.highlim-self.lowlim)/2 * np.dot(w, self.function(x_labels))
+
+    def monte_carlo(self,n):
+        rng = Random(5555)
+        x = rng.Random_Range(self.lowlim, self.highlim, n)  # generate n random points in [a, b]
+        fx = self.function(x)  # evaluate the function at the random points
+        area = np.mean(fx) * (self.highlim - self.lowlim)  # estimate the area under the curve
+        return area

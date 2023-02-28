@@ -12,7 +12,7 @@ from IntegralClass import Integration
 
 if __name__ == "__main__":
     
-    N= 20
+    N= 30
     lower = 0
     upper = np.pi
     precision = 4
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     if '-func' in sys.argv:
         p = sys.argv.index('-func')
-        func = eval('lambda x: ' + sys.argv[p+1])
+        func = eval('lamba x: ' + sys.argv[p+1])
     
     
     fx = Integration(func,lower,upper)
@@ -55,18 +55,21 @@ if __name__ == "__main__":
     ns = np.arange(2, N+1)
     I_midpoint = np.array([fx.midpoint_rule(n) for n in ns])
     I_gauss = np.array([fx.gauss_quad() for _ in ns])
+    I_Monte = np.array([fx.monte_carlo(k) for k in ns])
 
     # Compute errors
     error_midpoint = np.abs(I_midpoint - I_exact)
     error_gauss = np.abs(I_gauss - I_exact)
+    error_monte = np.abs(I_Monte-I_exact)
 
     # Plot errors
+    import matplotlib.pyplot as plt
 
     plt.plot(ns, error_midpoint, label='Midpoint rule')
     plt.plot(ns, error_gauss, label='Gauss-Legendre quadrature')
+    plt.plot(ns, error_monte, label='Monte Carlo')
     plt.xlabel('Number of sub-intervals')
     plt.ylabel('Absolute error')
-    plt.title("Integral Evaluation:"+ r'$\int_0^{{\pi}} \sin(x)\,dx = 2$')
     plt.legend()
     plt.show()
 
